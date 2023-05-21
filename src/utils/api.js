@@ -11,7 +11,6 @@ export const fetchDataFromApi = async (url, params) => {
     try {
         return await axios.get(BASE_URL + url, { headers, params: params })
     } catch (error) {
-        console.log(error)
-        return error;
+        return Promise.reject(new Error(error.message || "something went wrong!"))
     }
 }

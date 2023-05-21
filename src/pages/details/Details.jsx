@@ -6,12 +6,15 @@ import VideosSection from "./videosSection/VideosSection";
 import SimilarMovies from "./carousels/SimilarMovies";
 import Recommendation from "./carousels/Recommendation";
 import "./style.scss"
-
+import Error from "../../components/error/Error";
 const Details = () => {
     const { mediaType, id } = useParams();
-    const { data, isLoading } = useFetch(`/${mediaType}/${id}/videos`);
-    const { data: credits, isLoadingCredits } = useFetch(`/${mediaType}/${id}/credits`);
+    const { data, isLoading, error: videosError } = useFetch(`/${mediaType}/${id}/videos`);
+    const { data: credits, isLoading: isLoadingCredits, error: creditsError } = useFetch(`/${mediaType}/${id}/credits`);
 
+
+    if (videosError)
+        return <Error>{(videosError.message === "Network Error" ? "Check your network connection 📶" : videosError.message) || "Something went wrong!"}</Error>
 
     return (
         <div>

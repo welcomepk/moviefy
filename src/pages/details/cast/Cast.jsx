@@ -24,9 +24,9 @@ const Cast = ({ data, isLoading }) => {
     return (
         <div className="castSection">
             <ContentWrapper>
+                <div className="sectionHeading">Top Cast</div>
                 {!isLoading ? (<>
-                    <div className="sectionHeading">Top Cast</div>
-                    {data?.length === 0 && "there are no Cast available"}
+                    {data?.length === 0 && <span className="text-dull">No Cast available</span>}
                     <div className="listItems">
                         {data?.map(item => {
                             let img_url = item.profile_path ? url.profile + item.profile_path : avatar;
@@ -52,6 +52,36 @@ const Cast = ({ data, isLoading }) => {
                         <Skeleton />
                     </div>
                 )}
+                {/* <div className="sectionHeading">Top Cast</div>
+                {!isLoading ? (
+                    <div className="listItems">
+                        {data?.map((item) => {
+                            let imgUrl = item.profile_path
+                                ? url.profile + item.profile_path
+                                : avatar;
+                            return (
+                                <div key={item.id} className="listItem">
+                                    <div className="profileImg">
+                                        <Img src={imgUrl} />
+                                    </div>
+                                    <div className="name">{item.name}</div>
+                                    <div className="character">
+                                        {item.character}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="castSkeleton">
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                        <Skeleton />
+                    </div>
+                )} */}
             </ContentWrapper>
         </div>
     );

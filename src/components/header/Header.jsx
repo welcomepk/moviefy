@@ -16,7 +16,13 @@ const Header = () => {
     const [showSearch, setShowSearch] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const searchInput = useRef();
+
+    const searchInput = useRef(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setShowSearch(false);
+    }, [location]);
 
     const handleNavbar = (e) => {
         if (window.scrollY > 200) {
@@ -41,15 +47,21 @@ const Header = () => {
     const openSearch = () => {
         setMobileMenu(false)
         setShowSearch(true)
+
+        // searchInput.current.focus();
     }
     const openMobileMenu = () => {
         setMobileMenu(true)
         setShowSearch(false)
     }
     const handleSearchQuery = (e) => {
-        if (e.key === "Enter" && query.length > 0) {
+        e.preventDefault();
+        if (query.length > 0) {
             navigate("/search/" + query)
-            setTimeout(() => setShowSearch(false), 1000);
+            setTimeout(() => {
+                setShowSearch(false)
+                setQuery("");
+            }, 300);
         }
     }
 
@@ -80,14 +92,14 @@ const Header = () => {
             </ContentWrapper>
             {showSearch && <div className="searchBar">
                 <ContentWrapper>
-                    <div className="searchInput">
+                    <form className="searchInput" onSubmit={handleSearchQuery}>
                         <input ref={searchInput} type="text" placeholder='Search for a movie or TV show...'
                             value={query}
-                            onKeyUp={handleSearchQuery}
+                            // onKeyUp={handleSearchQuery}
                             onChange={e => setQuery(e.target.value)}
                         />
                         <VscChromeClose onClick={() => setShowSearch(false)} />
-                    </div>
+                    </form>
                 </ContentWrapper>
             </div>}
         </header>

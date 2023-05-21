@@ -1,0 +1,10 @@
+.errorContainer {
+    height: calc(100vh - 60px);
+    display: grid;
+    place-items: center;
+
+    .errorMessage {
+        font-size: 2rem;
+        font-weight: 200;
+    }
+}

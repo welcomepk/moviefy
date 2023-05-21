@@ -1,0 +1,127 @@
+@import "../../../mixins.scss";
+
+.heroBanner {
+    width: 100%;
+    height: 500px;
+    background-color: var(--black);
+    position: relative;
+    display: flex;
+
+    align-items: center;
+
+    .backdrop-img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .5;
+
+        .lazy-load-image-background {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+
+    .opacity-layer {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(180deg,
+                rgba(4, 21, 45, 0) 0%,
+                #04152d 79.17%);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .heroBannerContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+
+        .title {
+            font-size: 3.125rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+
+            @include md {
+                margin-bottom: 1rem;
+                font-size: 5.625rem;
+            }
+        }
+
+        .subTitle {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+
+            @include md {
+                font-size: 1.5rem;
+
+            }
+        }
+
+        .searchInput {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+
+            input,
+            button {
+                height: 50px;
+                outline: 0;
+                border: 0;
+                padding: 0 1rem;
+                font-size: .8rem;
+
+                @include md {
+                    height: 60px;
+                    font-size: 1rem;
+                    padding: 0 1.6rem;
+                }
+            }
+
+            input {
+                width: calc(100% - 6.25rem);
+                border-radius: 30px 0 0 30px;
+                background: #fff;
+
+                @include md {
+                    width: calc(100% - 8.25rem);
+                }
+            }
+
+            button {
+                width: 6.25rem;
+                border-radius: 0 30px 30px 0;
+                background-image: var(--gradient);
+                color: #fff;
+
+                @include md {
+                    width: 8.25rem;
+                }
+            }
+
+            @include md {
+                max-width: initial;
+            }
+        }
+    }
+
+    @include md {
+        height: 650px;
+    }
+}

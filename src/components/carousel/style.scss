@@ -75,6 +75,7 @@
                 width: 100%;
                 aspect-ratio: 1 / 1.5;
                 margin-bottom: 30px;
+                overflow: hidden;
             }
 
             .textBlock {
@@ -136,6 +137,7 @@
                 justify-content: space-between;
                 padding: 10px;
                 background-color: var(--black3);
+                border-radius: 12px;
 
                 .lazy-load-image-background {
                     position: absolute;
